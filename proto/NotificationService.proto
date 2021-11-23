@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+import "google/protobuf/empty.proto";
+import "Units.proto";
+package Services.Grpc;
+
+option csharp_namespace = "Faceberry.Grpc.AI";
+
+// --------------------------------------------
+// notification service
+// --------------------------------------------
+
+// must be implemented as a gRPC-server in third-party software
+service NotificationService {
+
+	// receive frame method
+	// used to create a subscriber
+	// input: recognition result
+	// output: empty
+	rpc ReceiveFrame(RecognitionResult) returns (google.protobuf.Empty);
+
+}

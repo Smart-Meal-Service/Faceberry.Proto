@@ -1,0 +1,79 @@
+﻿syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+package Services.Grpc;
+
+option csharp_namespace = "Faceberry.Grpc.AI";
+
+// --------------------------------------------
+// primitives
+// --------------------------------------------
+
+// region in (x, y, width, height) format
+message Region {
+	int32 x = 1;
+	int32 y = 2;
+	int32 width = 3;
+	int32 height = 4;
+}
+
+// marker in (x, y) format
+message Marker {
+	int32 x = 1;
+	int32 y = 2;
+}
+
+// --------------------------------------------
+// units
+// --------------------------------------------
+
+// marker list
+message MarkerUnit{
+	repeated Marker marker = 1;
+}
+
+// recognition unit in (region, marker list, bool) format
+message RecognitionUnit {
+	Region region = 1;
+	MarkerUnit marker_list = 2;
+	bool boolean = 3;
+	Region sub_region = 4;
+}
+
+// identification unit in (float[][]) format
+message IdentificationUnit {
+	repeated float embedding = 1;
+}
+
+// analytics unit in (string[]) format
+message AnalyticsUnit {
+    repeated string proto = 1;
+}
+
+// --------------------------------------------
+// unit lists
+// --------------------------------------------
+
+// recognition unit list
+message RecognitionUnitList {
+	repeated RecognitionUnit recognition_unit = 1;
+}
+
+// identification unit list
+message IdentificationUnitList {
+	repeated IdentificationUnit identification_unit = 1;
+}
+
+// analytics unit list
+message AnalyticsUnitList {
+    repeated AnalyticsUnit analytics_unit = 1;
+}
+
+// --------------------------------------------
+// messages
+// --------------------------------------------
+
+// recognition result: frame in JPEG format, recognition unit list
+message RecognitionResult {
+	google.protobuf.BytesValue frame = 1;
+	RecognitionUnitList recognition_unit_list = 2;
+}

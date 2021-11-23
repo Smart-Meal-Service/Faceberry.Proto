@@ -1,0 +1,41 @@
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+import "Units.proto";
+package Services.Grpc;
+
+option csharp_namespace = "Faceberry.Grpc.AI";
+
+// --------------------------------------------
+// request service
+// --------------------------------------------
+
+// must be implemented as a gRPC-client in third-party software
+service RequestService {
+
+	// get recognition result method
+	// used to get recognition result from device
+	// input: empty
+	// output: recognition result
+	rpc GetRecognitionResult(google.protobuf.Empty) returns (RecognitionResult);
+
+	// get recognition unit list method
+	// used to get recognition unit list from image in JPEG format
+	// input: image in JPEG format
+	// output: recognition unit list
+	rpc GetRecognitionUnitList(google.protobuf.BytesValue) returns (RecognitionUnitList);
+
+	// get identification unit list method
+	// used to get identification unit list from recognition result
+	// input: recognition result
+	// output: identification unit list
+	rpc GetIdentificationUnitList(RecognitionResult) returns (IdentificationUnitList);
+
+	// get analytics unit list method
+	// used to get identification unit list from recognition result
+	// input: recognition result
+	// output: analytics unit list
+	rpc GetAnalyticsUnitList(RecognitionResult) returns(AnalyticsUnitList);
+
+}
+
