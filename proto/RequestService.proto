@@ -37,5 +37,11 @@ service RequestService {
 	// output: analytics unit list
 	rpc GetAnalyticsUnitList(RecognitionResult) returns(AnalyticsUnitList);
 
+	// enable or disable recognition
+	// used to save machine resources
+	// input: enable or not
+	// output: empty
+	rpc EnableRecognition(google.protobuf.BoolValue) returns (google.protobuf.Empty);
+
 }
 
