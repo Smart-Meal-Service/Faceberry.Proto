@@ -1,5 +1,5 @@
 <p align="center"><img width="25%" src="docs/logo.png" /></p>
-<p align="center"> Protobuf files and certificates to integrate with Face ID </p>
+<p align="center">Protobuf files and certificates to integrate with <b>Face ID</b></p>
 
 # References
 [gRPC](https://grpc.io/) - A high performance, open source universal RPC framework.  
